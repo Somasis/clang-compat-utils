@@ -1,5 +1,5 @@
 PREFIX?=/usr
-BINS := built-with build-world-with-clang
+BINS := built-with build-world-with-clang clang-blacklist
 
 all:
 
