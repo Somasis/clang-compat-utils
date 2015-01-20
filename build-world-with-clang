@@ -1,0 +1,8 @@
+#!/bin/bash
+
+packages_gcc="/var/db/paludis/repositories/somasis/etc/clang-compat/packages.gcc"
+
+printf "Building entire world with \`clang\`...\n"
+printf "Note: packages listed in packages.gcc will be excluded\n\n"
+
+cave resolve -1x $(grep -v -x -f "$packages_gcc" <(paludis-built-with | grep gcc | cut -d' ' -f1 | cut -d':' -f1))
