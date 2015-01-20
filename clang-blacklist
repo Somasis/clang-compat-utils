@@ -1,4 +1,10 @@
 #!/bin/bash
+# clang-blacklist [pkg]
+# add packages specified to the packages.gcc file used to blacklist clang usage
+#
+# Copyright 2015, Kylie McClain <somasissounds@gmail.com>
+# Distributed under the terms of the ISC License
+#
 
 set -euf -o pipefail
 
