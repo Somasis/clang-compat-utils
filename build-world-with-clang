@@ -1,6 +1,7 @@
 #!/bin/bash
 # build-world-with-clang
-# build all packages on system with clang, except those in packages.gcc
+# build all packages on system with clang, except packages
+# listed in a packages.gcc file, or ones compiled with clang already
 #
 # Copyright 2015, Kylie McClain <somasissounds@gmail.com>
 # Distributed under the terms of the ISC License
@@ -16,4 +17,4 @@ fi
 printf "Building entire world with \`clang\`...\n"
 printf "Note: packages listed in \"$packages_gcc\" will be excluded\n\n"
 
-cave resolve -1x $(grep -v -x -f "$packages_gcc" <(built-with | grep gcc | cut -d' ' -f1)
+cave resolve -1x $(built-with gcc | cut -d' ' -f1 | grep -v -x -f "$packages_gcc")
