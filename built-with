@@ -1,7 +1,16 @@
 #!/bin/bash
 
+set -eu -o pipefail
+shopt -s failglob
+
 pkgs=/var/db/paludis/repositories/installed/data/*/*
 
 for pkg in $pkgs;do
-    printf "%s/%s %s\n" $(<$pkg/CATEGORY) $(echo ${pkg##*--}/* | cut -d'/' -f1):$(echo "${pkg##*/}" | cut -d':' -f1 | cut -d'-' -f1) $(sed 's#.*/##g;s#.*-##g' $pkg/CC);
-done
+    printf "%s/%s %s\n" $(<"$pkg/CATEGORY") $(echo "${pkg##*--}/*" | cut -d'/' -f1):$(echo "${pkg##*/}" | cut -d':' -f1 | cut -d'-' -f1) $(sed 's#.*/##g;s#.*-##g' "$pkg/CC");
+done | {
+    if [[ "$#" -gt 0 ]];then
+        grep " $1$"
+    else
+        cat
+    fi
+}
