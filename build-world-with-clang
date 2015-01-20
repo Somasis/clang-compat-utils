@@ -1,8 +1,13 @@
 #!/bin/bash
 
-packages_gcc="/var/db/paludis/repositories/somasis/etc/clang-compat/packages.gcc"
+set -euf -o pipefail
+
+packages_gcc="$HOME/git/exheres/etc/clang-compat/packages.gcc"
+if [[ ! -f "$packages_gcc" ]];then
+    packages_gcc="/var/db/paludis/repositories/somasis/etc/clang-compat/packages.gcc"
+fi
 
 printf "Building entire world with \`clang\`...\n"
-printf "Note: packages listed in packages.gcc will be excluded\n\n"
+printf "Note: packages listed in \"$packages_gcc\" will be excluded\n\n"
 
 cave resolve -1x $(grep -v -x -f "$packages_gcc" <(built-with | grep gcc | cut -d' ' -f1 | cut -d':' -f1))
