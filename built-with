@@ -12,7 +12,10 @@ shopt -s failglob
 pkgs=/var/db/paludis/repositories/installed/data/*/*
 
 for pkg in $pkgs;do
-    printf "%s/%s %s\n" $(<"$pkg/CATEGORY") $(echo "${pkg##*--}/*" | cut -d'/' -f1):$(echo "${pkg##*/}" | cut -d':' -f1 | cut -d'-' -f1) $(sed 's#.*/##g;s#.*-##g' "$pkg/CC");
+    printf "%s/%s %s\n" \
+        $(<"$pkg/CATEGORY") \
+        $(<"$pkg/PNVR"):$(<"$pkg/SLOT") \
+        $(printf $(<"$pkg/CC") | sed 's/.*-//g')
 done | {
     if [[ "$#" -gt 0 ]];then
         grep " $1$"
