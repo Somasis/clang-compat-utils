@@ -1,4 +1,10 @@
 #!/bin/bash
+# built-with [CC]
+# shows what compiler was used for packages installed on a Paludis-using system
+#
+# Copyright 2015, Kylie McClain <somasissounds@gmail.com>
+# Distributed under the terms of the ISC License
+#
 
 set -eu -o pipefail
 shopt -s failglob
