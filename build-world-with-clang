@@ -16,4 +16,4 @@ fi
 printf "Building entire world with \`clang\`...\n"
 printf "Note: packages listed in \"$packages_gcc\" will be excluded\n\n"
 
-cave resolve -1x $(grep -v -x -f "$packages_gcc" <(built-with | grep gcc | cut -d' ' -f1 | cut -d':' -f1))
+cave resolve -1x $(grep -v -x -f "$packages_gcc" <(built-with | grep gcc | cut -d' ' -f1)
