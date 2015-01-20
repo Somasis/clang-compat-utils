@@ -1,8 +1,14 @@
 #!/bin/bash
+# build-world-with-clang
+# build all packages on system with clang, except those in packages.gcc
+#
+# Copyright 2015, Kylie McClain <somasissounds@gmail.com>
+# Distributed under the terms of the ISC License
+#
 
 set -euf -o pipefail
 
-packages_gcc="$HOME/git/exheres/etc/clang-compat/packages.gcc"
+packages_gcc="${packages_gcc:-$HOME/git/exheres/etc/clang-compat/packages.gcc}"
 if [[ ! -f "$packages_gcc" ]];then
     packages_gcc="/var/db/paludis/repositories/somasis/etc/clang-compat/packages.gcc"
 fi
