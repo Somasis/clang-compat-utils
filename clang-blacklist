@@ -1,0 +1,24 @@
+#!/bin/bash
+
+set -euf -o pipefail
+
+packages_gcc="${packages_gcc:-$HOME/git/exheres/etc/clang-compat/packages.gcc}"
+temp=$(mktemp)
+
+if [[ ! -f "$packages_gcc" ]];then
+    echo "\"$packages_gcc\" doesn't exist"
+    exit 1
+fi
+
+if [[ -z "$@" ]];then
+    cat "$packages_gcc"
+    exit 0
+fi
+
+for pkg in $@;do
+    echo "$pkg" >> "$packages_gcc" || exit 2
+    sort -ud "$packages_gcc" > "$temp"
+    yes | mv "$temp" "$packages_gcc"
+    cd "$(dirname $packages_gcc)"
+    git commit -m "clang-compat: add $pkg to packages.gcc" -v packages.gcc
+done
