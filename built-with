@@ -15,7 +15,7 @@ for pkg in $pkgs;do
     printf "%s:%s %s\n" \
         $(printf "$pkg" | sed 's#.*/data/##;s#/.*##;s#---#/#') \
         $(<"$pkg/SLOT") \
-        $(printf $(<"$pkg/CC") | sed 's/.*-//g')
+        $(printf $(<"$pkg/CC") | sed 's#.*-##g;s#.*/##g')
 done | {
     if [[ "$#" -gt 0 ]];then
         grep " $1$"
