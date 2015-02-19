@@ -25,11 +25,11 @@ temp=$(mktemp)
 for pkg in $@;do
     if [[ "$pkg" != *'/'* ]] && [[ "$pkg" != */*-* ]] && [[ "$pkg" != */*:* ]] && [[ "$pkg" != */*-*:* ]];then
         echo "\"$pkg\" isn't in the right format. category/pn, category/pn-pv, category/pn:slot, category/pn-pv:slot."
-        exit 3
+        continue
     fi
     if grep -q "^$pkg$" "$packages_gcc";then
         echo "\"$pkg\" already exists in packages.gcc."
-        exit 4
+        continue
     fi
     echo "$pkg" >> "$packages_gcc" || exit 2
     sort -ud "$packages_gcc" > "$temp"
