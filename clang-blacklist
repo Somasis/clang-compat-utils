@@ -27,7 +27,11 @@ for pkg in $@;do
     sort -ud "$packages_gcc" > "$temp"
     yes | mv "$temp" "$packages_gcc" || :
     cd "$(dirname $packages_gcc)"
-    git commit -m "clang-compat: add $pkg to packages.gcc" -v packages.gcc
+    if grep -q "$pkg" "$packages_gcc";then
+        echo "\"$pkg\" already exists in packages.gcc."
+    else
+        git commit -m "clang-compat: add $pkg to packages.gcc" -v packages.gcc
+    fi
 done
 
 rm -f "$temp" >/dev/null 2>&1
