@@ -5,7 +5,7 @@ These are accompanying scripts I use for maintaining and using the
 
 They are not required in order to use clang-compat, and these are
 mostly just things I use to make my life easier since I'm the person
-upkeeping this unblessed mess.
+upkeeping this blessed mess.
 
 An exheres to install this can be found in [::somasis].
 
