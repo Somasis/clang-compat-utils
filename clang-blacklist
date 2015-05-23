@@ -2,7 +2,7 @@
 # clang-blacklist [pkg]
 # add packages specified to the packages.gcc file used to blacklist clang usage
 #
-# Copyright 2015, Kylie McClain <somasissounds@gmail.com>
+# Copyright 2015 Kylie McClain <somasis@exherbo.org>
 # Distributed under the terms of the ISC License
 #
 

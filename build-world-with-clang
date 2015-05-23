@@ -3,7 +3,7 @@
 # build all packages on system with clang, except packages
 # listed in a packages.gcc file, or ones compiled with clang already
 #
-# Copyright 2015, Kylie McClain <somasissounds@gmail.com>
+# Copyright 2015 Kylie McClain <somasis@exherbo.org>
 # Distributed under the terms of the ISC License
 #
 
